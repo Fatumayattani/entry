@@ -1,9 +1,14 @@
 import { AnchorProvider, Program, BN } from '@coral-xyz/anchor';
 import { AnchorWallet } from '@solana/wallet-adapter-react';
-import { Connection, PublicKey, SystemProgram } from '@solana/web3.js';
+import { Connection, SystemProgram } from '@solana/web3.js';
 import idl from '../../target/idl/entry_pass.json';
 
-const PROGRAM_ID = new PublicKey('EntryPassProgram11111111111111111111111111');
+import { PublicKey } from "@solana/web3.js";
+
+// Load program ID from environment variable
+const PROGRAM_ID = new PublicKey(import.meta.env.VITE_PROGRAM_ID);
+
+console.log("Program ID:", PROGRAM_ID.toBase58());
 
 export interface PassCollectionData {
   organizer: PublicKey;

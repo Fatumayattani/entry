@@ -146,13 +146,10 @@ pub struct RevokePass<'info> {
 }
 
 #[account]
-#[derive(InitSpace)]
 pub struct PassCollection {
     pub organizer: Pubkey,
-    #[max_len(50)]
-    pub name: String,
-    #[max_len(200)]
-    pub description: String,
+    pub name: String,        // max 50 chars
+    pub description: String, // max 200 chars
     pub price: u64,
     pub max_supply: u64,
     pub current_supply: u64,
@@ -161,8 +158,19 @@ pub struct PassCollection {
     pub bump: u8,
 }
 
+impl PassCollection {
+    pub const INIT_SPACE: usize = 32                // organizer
+        + 4 + 50                                   // name (4 bytes prefix + max 50)
+        + 4 + 200                                  // description (4 bytes prefix + max 200)
+        + 8                                        // price
+        + 8                                        // max_supply
+        + 8                                        // current_supply
+        + 8                                        // validity_period
+        + 8                                        // created_at
+        + 1;                                       // bump
+}
+
 #[account]
-#[derive(InitSpace)]
 pub struct UserPass {
     pub owner: Pubkey,
     pub pass_collection: Pubkey,
@@ -170,6 +178,15 @@ pub struct UserPass {
     pub expires_at: i64,
     pub is_active: bool,
     pub bump: u8,
+}
+
+impl UserPass {
+    pub const INIT_SPACE: usize = 32               // owner
+        + 32                                       // pass_collection
+        + 8                                        // purchased_at
+        + 8                                        // expires_at
+        + 1                                        // is_active
+        + 1;                                       // bump
 }
 
 #[error_code]
