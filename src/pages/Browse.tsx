@@ -3,7 +3,6 @@ import { ArrowLeft, Ticket, Clock, Users, ShoppingCart, Loader2, CheckCircle, Ta
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { PublicKey } from '@solana/web3.js';
-import { EntryProgram } from '../lib/solana';
 import { Pass } from '../types';
 
 interface BrowseProps {
