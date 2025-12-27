@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { ArrowLeft, Ticket, Loader2, CheckCircle, Calendar, DollarSign, Users, Lock } from 'lucide-react';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { EntryProgram } from '../lib/solana';
 
 interface OrganizerProps {
   onNavigate: (page: string) => void;
